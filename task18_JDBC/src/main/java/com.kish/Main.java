@@ -38,7 +38,6 @@ public class Main {
         System.out.println(department.getByID(2));
         System.out.println(employee.getByID(4));
         System.out.println(project.getByID(3));
-       // System.out.println(work.getByID(1));
 
         //delete row
         Department dep = new Department();
