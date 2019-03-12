@@ -50,5 +50,4 @@ public class DBDaoFactory implements DaoFactory<Connection> {
         }
         return creator.create(connection);
     }
-
 }
