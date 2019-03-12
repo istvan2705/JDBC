@@ -12,6 +12,9 @@ import java.util.List;
 
 public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
 
+    public DepartmentDAOImpl(Connection connection) {
+        super(connection);
+    }
     private class PersistDepartment extends Department {
         public void setId(int id) {
             super.setID(id);
@@ -45,9 +48,6 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
         return persist(g);
     }
 
-    public DepartmentDAOImpl(Connection connection) {
-        super(connection);
-    }
 
     @Override
     protected List<Department> parseResultSet(ResultSet rs) throws DBException {
