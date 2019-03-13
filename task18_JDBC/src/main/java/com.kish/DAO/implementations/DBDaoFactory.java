@@ -30,8 +30,8 @@ public class DBDaoFactory implements DaoFactory {
         }
 
         creators = new HashMap<>();
-        creators.put(Department.class,  connection -> new DepartmentDAOImpl(connection));
-        creators.put(Employee.class,  connection -> new EmployeeDAOImpl(connection));
+        creators.put(Department.class, connection -> new DepartmentDAOImpl(connection));
+        creators.put(Employee.class, connection -> new EmployeeDAOImpl(connection));
         creators.put(Project.class, connection -> new ProjectDAOImpl(connection));
         creators.put(Work.class, connection -> new WorkDAOImpl(connection));
     }
