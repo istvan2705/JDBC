@@ -5,6 +5,8 @@ import com.kish.DAO.DaoFactory;
 import com.kish.DAO.GeneralDAO;
 import com.kish.model.Department;
 import com.kish.model.Employee;
+import com.kish.model.Project;
+import com.kish.model.Work;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,6 +32,8 @@ public class DBDaoFactory implements DaoFactory<Connection> {
         creators = new HashMap<>();
         creators.put(Department.class, (DaoCreator<Connection>) connection -> new DepartmentDAOImpl(connection));
         creators.put(Employee.class, (DaoCreator<Connection>) connection -> new EmployeeDAOImpl(connection));
+        creators.put(Project.class, (DaoCreator<Connection>) connection -> new ProjectDAOImpl(connection));
+        creators.put(Work.class, (DaoCreator<Connection>) connection -> new WorkDAOImpl(connection));
     }
 
     public Connection getContext() throws DBException {
