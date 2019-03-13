@@ -43,26 +43,16 @@ public class Main {
         //get row by ID
         Department departmentFindByID = (Department) departmentDAO.getByID(2);
         log.info(departmentFindByID);
-        Employee employeeFindByID = (Employee) employeeDAO.getByID(3);
+        Employee employeeFindByID = (Employee) employeeDAO.getByID(2);
         log.info(employeeFindByID);
-        Project projectFindByID = (Project) projectDAO.getByID(4);
+        Project projectFindByID = (Project) projectDAO.getByID(2);
         log.info(projectFindByID);
-        Work workFindByID = (Work) workDAO.getByID(5);
+        Work workFindByID = (Work) workDAO.getByID(2);
         log.info(workFindByID);
         Department department = new Department();
         Employee employee = new Employee();
         Project project = new Project();
         Work work = new Work();
-
-        //delete row
-        department.setID(1);
-        departmentDAO.delete(department);
-        employee.setID(1);
-        employeeDAO.delete(employee);
-        project.setID(1);
-        projectDAO.delete(project);
-        work.setID(1);
-        workDAO.delete(work);
 
         //update row
         department.setName("public_relations");
@@ -90,11 +80,10 @@ public class Main {
         workDAO.update(work);
 
         //insert row
-        department.setID(15);
+        department.setID(12);
         department.setName("foreign relationship");
         department.setLocation("Dnipro");
         departmentDAO.create(department);
-
 
         //database metaDara
         String dataBaseName = databaseMetaData.getDatabaseProductName();

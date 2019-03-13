@@ -12,6 +12,7 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
     public AbstractJDBCDao(Connection connection) {
         this.connection = connection;
     }
+
     public abstract String getSelectQuery();
 
     public abstract String getCreateQuery();
@@ -28,7 +29,7 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
 
     @Override
     public void create(T object) throws DBException {
-           String sql = getCreateQuery();
+        String sql = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
             int count = statement.executeUpdate();
@@ -38,7 +39,7 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
         } catch (Exception e) {
             throw new DBException(e);
         }
-       }
+    }
 
     @Override
     public T getByID(Integer key) throws DBException {
@@ -88,7 +89,7 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
             if (count != 1) {
                 throw new DBException("On delete modify more then 1 record: " + count);
             }
-           } catch (Exception e) {
+        } catch (Exception e) {
             throw new DBException(e);
         }
     }
@@ -105,5 +106,4 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
         }
         return list;
     }
-
 }
