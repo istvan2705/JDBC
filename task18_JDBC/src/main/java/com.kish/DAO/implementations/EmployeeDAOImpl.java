@@ -38,18 +38,12 @@ public class EmployeeDAOImpl extends AbstractJDBCDao<Employee, Integer> {
     }
 
     @Override
-    public Employee create() throws DBException {
-        Employee g = new Employee();
-        return persist(g);
-    }
-
-    @Override
     protected List<Employee> parseResultSet(ResultSet rs) throws DBException {
         LinkedList<Employee> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                PersistEmployee employee = new PersistEmployee();
-                employee.setId(rs.getInt("ID"));
+                Employee employee = new Employee();
+                employee.setID(rs.getInt("ID"));
                 employee.setName(rs.getString("last_name"));
                 employee.setLastName(rs.getString("name"));
                 employee.setDepartmentID(rs.getInt("department_ID"));
@@ -81,12 +75,6 @@ public class EmployeeDAOImpl extends AbstractJDBCDao<Employee, Integer> {
             statement.setInt(4, object.getId());
         } catch (Exception e) {
             throw new DBException(e);
-        }
-    }
-
-    private class PersistEmployee extends Employee {
-        public void setId(int id) {
-            super.setID(id);
         }
     }
 }

@@ -12,10 +12,8 @@ import java.util.List;
 
 public class ProjectDAOImpl extends AbstractJDBCDao<Project, Integer> {
 
-    private class PersistProject extends Project {
-        public void setId(int id) {
-            super.setID(id);
-        }
+    public ProjectDAOImpl(Connection connection) {
+        super(connection);
     }
 
     @Override
@@ -40,22 +38,12 @@ public class ProjectDAOImpl extends AbstractJDBCDao<Project, Integer> {
     }
 
     @Override
-    public Project create() throws DBException {
-        Project g = new Project();
-        return persist(g);
-    }
-
-    public ProjectDAOImpl(Connection connection) {
-        super(connection);
-    }
-
-    @Override
     protected List<Project> parseResultSet(ResultSet rs) throws DBException {
         LinkedList<Project> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                PersistProject project = new PersistProject();
-                project.setId(rs.getInt("ID"));
+                Project project = new Project();
+                project.setID(rs.getInt("ID"));
                 project.setProjectName(rs.getString("project_name"));
                 project.setBudget(rs.getInt("budget"));
                 project.setEmployeeID(rs.getInt("employee_ID"));

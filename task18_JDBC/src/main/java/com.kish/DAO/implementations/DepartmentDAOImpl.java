@@ -16,11 +16,6 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
         super(connection);
     }
 
-    private class PersistDepartment extends Department {
-        public void setId(int id) {
-            super.setID(id);
-        }
-    }
 
     @Override
     public String getSelectQuery() {
@@ -44,18 +39,12 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
     }
 
     @Override
-    public Department create() throws DBException {
-        Department g = new Department();
-        return persist(g);
-    }
-
-    @Override
     protected List<Department> parseResultSet(ResultSet rs) throws DBException {
         LinkedList<Department> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                PersistDepartment department = new PersistDepartment();
-                department.setId(rs.getInt("ID"));
+                Department department = new Department();
+                department.setID(rs.getInt("ID"));
                 department.setName(rs.getString("name"));
                 department.setLocation(rs.getString("location"));
                 result.add(department);

@@ -27,32 +27,18 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws DBException;
 
     @Override
-    public T persist(T object) throws DBException {
-        T persistInstance;
-
-        String sql = getCreateQuery();
+    public void create(T object) throws DBException {
+           String sql = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
             int count = statement.executeUpdate();
             if (count != 1) {
-                throw new DBException("On persist modify more then 1 record: " + count);
+                throw new DBException("On create modify more then 1 record: " + count);
             }
         } catch (Exception e) {
             throw new DBException(e);
         }
-        sql = getSelectQuery() + " WHERE id = last_insert_id();";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            List<T> list = parseResultSet(rs);
-            if ((list == null) || (list.size() != 1)) {
-                throw new DBException("Exception on findByID new persist data.");
-            }
-            persistInstance = list.iterator().next();
-        } catch (Exception e) {
-            throw new DBException(e);
-        }
-        return persistInstance;
-    }
+       }
 
     @Override
     public T getByID(Integer key) throws DBException {

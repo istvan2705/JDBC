@@ -3,7 +3,7 @@ package com.kish.model;
 import com.kish.DAO.Identified;
 
 public class Project implements Identified<Integer> {
-    private Integer ID = null;
+    private int ID;
     private String projectName;
     private int budget;
     private Integer employeeID;

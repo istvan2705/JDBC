@@ -5,9 +5,7 @@ import java.util.List;
 
 public interface GeneralDAO<T extends Identified<ID>, ID extends Serializable>  {
 
-     T create() throws DBException;
-
-     T persist(T object)  throws DBException;
+     void create(T object) throws DBException;
 
      T getByID(ID key) throws DBException;
 

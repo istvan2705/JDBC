@@ -42,16 +42,20 @@ public class Main {
 
         //get row by ID
 
-        Department findByID = (Department) departmentDAO.getByID(2);
-       log.info(findByID);
-
-
-       log.info(projectDAO.getByID(3));
-
+        Department departmentFindByID = (Department) departmentDAO.getByID(2);
+        log.info(departmentFindByID);
+        Employee employeeFindByID = (Employee) employeeDAO.getByID(3);
+        log.info(employeeFindByID);
+        Project projectFindByID = (Project) projectDAO.getByID(4);
+        log.info(projectFindByID);
+        Work workFindByID = (Work) workDAO.getByID(5);
+        log.info(workFindByID);
         //delete row
        // Department dep = new Department();
 //        dep.setID(1);
 //         department.delete(dep);
+
+
     }
 
 

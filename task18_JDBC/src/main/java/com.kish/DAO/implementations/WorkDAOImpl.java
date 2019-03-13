@@ -12,16 +12,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
-
-    private class PersistWork extends Work {
-        public void setId(Integer project_ID) {
-            super.setID(project_ID);
-        }
+    public WorkDAOImpl(Connection connection) {
+        super(connection);
     }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT project_ID, employee_ID, job, start_date, deadline FROM mydb.work";
+        return "SELECT ID, employee_ID, job, start_date, deadline FROM mydb.work";
     }
 
     @Override
@@ -33,22 +30,12 @@ public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
     @Override
     public String getUpdateQuery() {
         return "UPDATE mydb.work SET employee_ID= ? job= ? start_date= ? \n" +
-                " deadline= ? WHERE project_ID= ?;";
+                " deadline= ? WHERE ID= ?;";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM mydb.work WHERE project_ID= ?;";
-    }
-
-    @Override
-    public Work create() throws DBException {
-        Work g = new Work();
-        return persist(g);
-    }
-
-    public WorkDAOImpl(Connection connection) {
-        super(connection);
+        return "DELETE FROM mydb.work WHERE ID= ?;";
     }
 
     @Override
@@ -56,8 +43,8 @@ public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
         LinkedList<Work> result = new LinkedList<>();
         try {
             while (rs.next()) {
-                PersistWork work = new PersistWork();
-                work.setId(rs.getInt("project_ID"));
+                Work work = new Work();
+                work.setID(rs.getInt("ID"));
                 work.setEmployeeID(rs.getInt("employee_ID"));
                 work.setJob(rs.getString("job"));
                 work.setStartDate(rs.getDate("start_date"));

@@ -5,7 +5,7 @@ import com.kish.DAO.Identified;
 import java.util.Date;
 
 public class Work implements Identified<Integer> {
-    private Integer projectID = null;
+    private Integer ID = null;
     private Integer employeeID;
     private String job;
     private Date startDate;
@@ -13,11 +13,11 @@ public class Work implements Identified<Integer> {
 
     @Override
     public Integer getId() {
-        return projectID;
+        return ID;
     }
 
-    public void setID(Integer projectID) {
-        this.projectID = projectID;
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 
     public Integer getEmployeeID() {
@@ -55,7 +55,7 @@ public class Work implements Identified<Integer> {
     @Override
     public String toString() {
         return "Work{" +
-                "projectID=" + projectID +
+                "ID=" + ID +
                 ", employeeID=" + employeeID +
                 ", job='" + job + '\'' +
                 ", startDate=" + startDate +
