@@ -16,7 +16,6 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
         super(connection);
     }
 
-
     @Override
     public String getSelectQuery() {
         return "SELECT ID, name, location FROM mydb.department";
@@ -24,8 +23,8 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO mydb.department (name, location) \n" +
-                "VALUES (?, ?);";
+        return "INSERT INTO mydb.department (ID, name, location) \n" +
+                "VALUES (?, ?, ?);";
     }
 
     @Override
@@ -58,8 +57,9 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Department object) throws DBException {
         try {
-            statement.setString(1, object.getName());
-            statement.setString(2, object.getLocation());
+            statement.setInt(1, object.getId());
+            statement.setString(2, object.getName());
+            statement.setString(3, object.getLocation());
         } catch (Exception e) {
             throw new DBException(e);
         }

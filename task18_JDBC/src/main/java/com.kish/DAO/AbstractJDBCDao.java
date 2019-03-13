@@ -67,7 +67,6 @@ public abstract class AbstractJDBCDao<T extends Identified<ID>, ID extends Integ
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForUpdate(statement, object);
             int count = statement.executeUpdate();
-            System.out.println(count);
             if (count != 1) {
                 throw new DBException("On update modify more then 1 record: " + count);
             }
