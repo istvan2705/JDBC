@@ -81,4 +81,4 @@ public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
             throw new DBException(e);
         }
     }
-    }
+}
