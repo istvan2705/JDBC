@@ -29,7 +29,7 @@ public class ProjectDAOImpl extends AbstractJDBCDao<Project, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE mydb.project SET project_name=? budget= ? employee_ID= ? WHERE ID= ?;";
+        return "UPDATE mydb.project SET project_name=?, budget= ?, employee_ID= ? WHERE ID= ?;";
     }
 
     @Override

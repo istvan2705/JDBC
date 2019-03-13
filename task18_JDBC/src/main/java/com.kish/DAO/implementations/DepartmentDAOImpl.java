@@ -30,7 +30,7 @@ public class DepartmentDAOImpl extends AbstractJDBCDao<Department, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE mydb.department SET name= ? location = ? WHERE ID= ?;";
+        return "UPDATE mydb.department SET name= ?, location = ? WHERE ID= ?;";
     }
 
     @Override

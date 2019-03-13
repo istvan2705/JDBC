@@ -29,7 +29,7 @@ public class EmployeeDAOImpl extends AbstractJDBCDao<Employee, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE mydb.employee SET last_name=? name= ? department_ID = ? WHERE ID= ?;";
+        return "UPDATE mydb.employee SET last_name=?, name= ?, department_ID = ? WHERE ID= ?;";
     }
 
     @Override

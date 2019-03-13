@@ -29,7 +29,7 @@ public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE mydb.work SET employee_ID= ? job= ? start_date= ? \n" +
+        return "UPDATE mydb.work SET employee_ID= ?, job= ?, start_date= ?, \n" +
                 " deadline= ? WHERE ID= ?;";
     }
 
@@ -81,4 +81,4 @@ public class WorkDAOImpl extends AbstractJDBCDao<Work, Integer> {
             throw new DBException(e);
         }
     }
-}
+    }
