@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DBDaoFactory implements DaoFactory<Connection> {
+public class DBDaoFactory implements DaoFactory {
 
     private String user = "root";
     private String password = "1401198n";
@@ -30,13 +30,13 @@ public class DBDaoFactory implements DaoFactory<Connection> {
         }
 
         creators = new HashMap<>();
-        creators.put(Department.class, (DaoCreator<Connection>) connection -> new DepartmentDAOImpl(connection));
-        creators.put(Employee.class, (DaoCreator<Connection>) connection -> new EmployeeDAOImpl(connection));
-        creators.put(Project.class, (DaoCreator<Connection>) connection -> new ProjectDAOImpl(connection));
-        creators.put(Work.class, (DaoCreator<Connection>) connection -> new WorkDAOImpl(connection));
+        creators.put(Department.class,  connection -> new DepartmentDAOImpl(connection));
+        creators.put(Employee.class,  connection -> new EmployeeDAOImpl(connection));
+        creators.put(Project.class, connection -> new ProjectDAOImpl(connection));
+        creators.put(Work.class, connection -> new WorkDAOImpl(connection));
     }
 
-    public Connection getContext() throws DBException {
+    public Connection getConnection() throws DBException {
         Connection connection;
         try {
             connection = DriverManager.getConnection(url, user, password);

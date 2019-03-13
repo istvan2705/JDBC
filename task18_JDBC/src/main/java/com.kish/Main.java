@@ -21,7 +21,7 @@ public class Main {
 
     public static void main(String[] args) throws DBException {
         DaoFactory factory = new DBDaoFactory();
-        Connection connection = factory.getContext();
+        Connection connection = factory.getConnection();
         GeneralDAO departmentDAO = factory.getDao(connection, Department.class);
         GeneralDAO employeeDAO = factory.getDao(connection, Employee.class);
        GeneralDAO projectDAO = factory.getDao(connection, Project.class);

@@ -2,13 +2,13 @@ package com.kish.DAO;
 
 import java.sql.Connection;
 
-public interface DaoFactory<Context> {
+public interface DaoFactory {
 
-    Connection getContext() throws DBException;
+    Connection getConnection() throws DBException;
 
-    GeneralDAO getDao(Context context, Class entity) throws DBException;
+    GeneralDAO getDao(Connection context, Class entity) throws DBException;
 
-    interface DaoCreator<Context> {
-        GeneralDAO create(Context context);
+    interface DaoCreator {
+        GeneralDAO create(Connection context);
     }
 }
